@@ -11,6 +11,10 @@ def introText():
     P2 = PC.Player(input("What is the name of player 2? "))    
     print(P2.name)
 
+    P3 = PC.Player("hold")
+
+    P4 = PC.Player("hold")
+
     if numPlayers > 2:
         P3 = PC.Player(input("What is the name of player 3? "))    
         print(P3.name)
@@ -21,7 +25,7 @@ def introText():
 
     print("The ends the setup phase. Time to start the same")
 
-    return P1, P2
+    return P1, P2, P3, P4
 
     # Add picking or assigning player order randomly later
 

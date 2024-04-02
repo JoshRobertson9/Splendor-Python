@@ -3,13 +3,16 @@
 import GameStart as GS
 import GameLoop as GL
 import GameEnd as GE
+import PlayerClass as PC
 
 
 #Game Start and Player Setup
 
-a,b = GS.introText()
+P1,P2,P3,P4 = GS.introText()
 
-print(a.name)
+print(P1.name)
+P1.displayStatus()
+
 
 
 # Playing the Game Loop
