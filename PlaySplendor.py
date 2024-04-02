@@ -5,11 +5,11 @@ import GameLoop as GL
 import GameEnd as GE
 
 
-#Game Start
+#Game Start and Player Setup
 
-GS.introText()
+a,b = GS.introText()
 
-#Player Setup
+print(a.name)
 
 
 # Playing the Game Loop
