@@ -5,6 +5,8 @@ def introText():
     print("Hello and welcome to Splendor - Python Edition.")
     numPlayers = int(input("How many humans are playing? Please provide a number 2-4. "))
 
+    #This section could possibly be made into a player array later, that may be more dynamic and manageable
+
     P1 = PC.Player(input("What is the name of player 1? "))    
     print(P1.name)
 
@@ -23,9 +25,9 @@ def introText():
         P4 = PC.Player(input("What is the name of player 4? "))    
         print(P4.name)
 
-    print("The ends the setup phase. Time to start the same")
+    print("The ends the setup phase. Time to start the game")
 
-    return P1, P2, P3, P4
+    return P1, P2, P3, P4, numPlayers
 
     # Add picking or assigning player order randomly later
 

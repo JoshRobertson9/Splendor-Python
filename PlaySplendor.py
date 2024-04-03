@@ -8,7 +8,7 @@ import PlayerClass as PC
 
 #Game Start and Player Setup
 
-P1,P2,P3,P4 = GS.introText()
+P1,P2,P3,P4, numPlayers = GS.introText()
 
 print(P1.name)
 P1.displayStatus()

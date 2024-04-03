@@ -28,3 +28,6 @@ class Player:
 #P1 = Player("Josh")
 #P1.displayStatus()
 
+
+# To Calculate
+    # Buying Power
