@@ -1,3 +1,5 @@
+from DevelopmentCards import three_levels_display
+
 
 def theLoop():
     pass
@@ -5,7 +7,7 @@ def theLoop():
 
     while GameState == True:
         
-
+        three_levels_display
 
         
         
