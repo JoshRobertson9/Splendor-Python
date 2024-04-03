@@ -25,7 +25,11 @@ def introText():
         P4 = PC.Player(input("What is the name of player 4? "))    
         print(P4.name)
 
-    print("The ends the setup phase. Time to start the game")
+        if numPlayers > 4:
+            print("Sorry, only 4 people at most can play at a time. Take turns and let them play next time!")
+
+
+    print("This ends the setup phase. Time to start the game\n")
 
     return P1, P2, P3, P4, numPlayers
 

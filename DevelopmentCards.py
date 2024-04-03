@@ -6,7 +6,6 @@ import random
 import ColorAlign as CA
 
 
-
 # [CardColor, [costColorArray], PointsWorth, CardLevel]
 
 # [Green, White, Blue, Black, Red, Gold]
@@ -152,12 +151,20 @@ def three_levels_display():
 
 
 
-three_levels_display()
+#three_levels_display()
 
 
 
+# Removing Card from list and returning it
+# The player will be able to add to their deck or reserve pile
+
+def removecard(card_list,index):
+    card = card_list.pop(index)
+    return card
 
 
+#removecard(dev_cards_lvl_three_copy,0)
+#three_levels_display()
 
 
 
