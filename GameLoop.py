@@ -1,32 +1,37 @@
 from DevelopmentCards import three_levels_display
 import PlayerClass as PC
 
-def theLoop(player):
-    pass
+
+
+def theLoop(player_list):
+    
+    num_players = len(player_list)
+
     GameState = True
 
     while GameState == True:
         
-        #Display user's status
-        player.displayStatus()
+        # All players will take a turn. 
+        for n in range(num_players):
 
-        # Display available cards
-        three_levels_display
+            #Display user's status
+            player_list[n].displayStatus()
 
-        # Display available tokens
-            # Create coin display
-        
+            # Display available cards
+            three_levels_display
 
-        #The person's turn
-
-        PlayerAction(player)
-
-
-        # If someone's points > = 15 -> Gamestate = False
-
-        GameState = False
+            # Display available tokens
+                # Create token display
+            
 
 
+            #The person's turn
+            PlayerAction(player_list[n])
+
+            # If someone's points > = 15 -> Gamestate = False
+            if player_list[n].points >= 15:
+                print("Someone just got 15 or more points. The game ends after this round.")
+                GameState = False
 
 
 
@@ -55,6 +60,7 @@ def PlayerAction(player):
         case 4:
             # Display other user's scores
             pass
+            player.points = 22
         case _ :
             #Re-loops through the action questions
             print("Incorrect input, please try again.")
