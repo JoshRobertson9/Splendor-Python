@@ -9,8 +9,6 @@ import winner_calc as WC
 #Game Start and Player Setup
 player_list = GS.introText()
 
-
-
 # Playing the Game Loop
 GL.theLoop(player_list)
 
@@ -20,8 +18,5 @@ WC.winner_calc(player_list)
 
 
 # Game Wrap Up
-
 GE.endText()
-
-
 
