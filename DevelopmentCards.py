@@ -22,7 +22,6 @@ dev_cards_lvl_one = [
 ["blue", 0, {'green': 3, 'white': 0, 'blue': 1, 'black': 0, 'red': 1, 'gold': 0}],
 ["blue", 0, {'green': 0, 'white': 1, 'blue': 0, 'black': 2, 'red': 0, 'gold': 0}],
 ["white", 0, {'green': 0, 'white': 0, 'blue': 3, 'black': 0, 'red': 0, 'gold': 0}],
-
 ["red", 0, {'green': 1, 'white': 2, 'blue': 0, 'black': 2, 'red': 0, 'gold': 0}],
 ["red", 0, {'green': 0, 'white': 1, 'blue': 0, 'black': 3, 'red': 1, 'gold': 0}],
 ["green", 0, {'green': 0, 'white': 0, 'blue': 1, 'black': 2, 'red': 2, 'gold': 0}],
@@ -35,7 +34,6 @@ dev_cards_lvl_one = [
 ["green", 0, {'green': 0, 'white': 1, 'blue': 1, 'black': 1, 'red': 1, 'gold': 0}],
 ["red", 0, {'green': 1, 'white': 1, 'blue': 1, 'black': 1, 'red': 0, 'gold': 0}],
 ["red", 1, {'green': 0, 'white': 4, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0}],
-
 ["red", 0, {'green': 0, 'white': 2, 'blue': 0, 'black': 0, 'red': 2, 'gold': 0}],
 ["white", 0, {'green': 2, 'white': 0, 'blue': 1, 'black': 1, 'red': 1, 'gold': 0}],
 ["white", 0, {'green': 0, 'white': 0, 'blue': 2, 'black': 2, 'red': 0, 'gold': 0}],
@@ -81,7 +79,6 @@ dev_cards_lvl_two = [
 ["red", 2, {'green': 0, 'white': 3, 'blue': 0, 'black': 5, 'red': 0, 'gold': 0}],
 ["blue", 1, {'green': 3, 'white': 0, 'blue': 2, 'black': 3, 'red': 0, 'gold': 0}],
 ["white", 2, {'green': 1, 'white': 0, 'blue': 0, 'black': 2, 'red': 4, 'gold': 0}],
-
 ["white", 2, {'green': 0, 'white': 0, 'blue': 0, 'black': 0, 'red': 5, 'gold': 0}],
 ["red", 1, {'green': 0, 'white': 0, 'blue': 3, 'black': 3, 'red': 2, 'gold': 0}],
 ["green", 2, {'green': 5, 'white': 0, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0}],
@@ -163,7 +160,7 @@ for num in range(0,4):
     PrintCard(dev_cards_lvl_one,num)
 """
 
-#Card Deck Copies
+#Card Deck Copies (I made separate copies in case that was needed. Doesn't seem to be needed, but leaving as is for now.)
 dev_cards_lvl_one_copy = copy.deepcopy(dev_cards_lvl_one)
 dev_cards_lvl_two_copy = copy.deepcopy(dev_cards_lvl_two)
 dev_cards_lvl_three_copy = copy.deepcopy(dev_cards_lvl_three)
