@@ -1,6 +1,6 @@
 
 # This section was built with some help from Chat GPT. I wanted to see what it could create
-# from the following prompt
+# I have actually just ended up using a dictionary on its own and not a class for the tokens.
 
 class TokenManager:
     def __init__(self, initial_tokens):
