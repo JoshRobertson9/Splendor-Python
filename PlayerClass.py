@@ -5,9 +5,9 @@ class Player:
     def __init__(self,name):
         self.name = name
         self.points = 0
-        #self.tokens = TokenManager({'green': 0, 'white': 0, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0})
-        self.tokens = {'green': 0, 'white': 0, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0}
-        self.card_power = {'green': 4, 'white': 4, 'blue': 0, 'black': 4, 'red': 4, 'gold': 0}
+        #self.tokens = TokenManager({'green': 2, 'white': 2, 'blue': 2, 'black': 2, 'red': 2, 'gold': 0})
+        self.tokens = {'green': 2, 'white': 2, 'blue': 2, 'black': 2, 'red': 2, 'gold': 0}
+        self.card_power = {'green': 2, 'white': 2, 'blue': 2, 'black': 2, 'red': 2, 'gold': 0}
         self.card_list = []
         self.card_hold = []
         self.noble_count = 0

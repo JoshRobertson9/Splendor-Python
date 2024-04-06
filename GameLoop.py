@@ -98,8 +98,10 @@ def PlayerAction(player,board_tokens,player_list):
     print()
     print("What will you do? Type the corresponding number and then press enter.")
     print("Option 1 - Pick Tokens")
-    print("Option 2 - Buy a Card")
-    print("Option 3 - Display all user's details")
+    print("Option 2 - Buy a Development Card")
+    print("Option 3 - Select Development Card & Joker")
+    print("Option 4 - Purchase held Development Card")
+    print("Option 5 - Display all user's details")
 
     choice = int(input("What will it be?: "))
 
@@ -109,6 +111,7 @@ def PlayerAction(player,board_tokens,player_list):
             player.pick_up_tokens(board_tokens)
             # Display Tokens
             pass
+
         case 2:
             # Buy card
             pass
@@ -116,19 +119,104 @@ def PlayerAction(player,board_tokens,player_list):
 
             match card_num:
                 case 1 | 2 | 3 | 4 :
-                    selected_card = DC.dev_cards_lvl_one_copy.pop(card_num-1)
-                    player.card_list.append(selected_card)
+
+                    sel_card = DC.dev_cards_lvl_one_copy[card_num - 1]
+                    sel_card_dict = sel_card[2]
+
+                    # Chat gpt helped me write the below line a little bit.
+                    if all(value <= (player.tokens[key] + player.card_power.get(key,0))  for key, value in sel_card_dict.items()):
+                        #print("You can afford this card!")
+
+                        # Remove tokens and put back into the pile
+                        rem_card_cost = {'green': 0, 'white': 0, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0}
+
+                        for key in rem_card_cost:
+                            if sel_card_dict[key] - player.card_power[key] > 0:
+                                rem_card_cost[key] = sel_card_dict[key] - player.card_power[key]
+                            elif sel_card_dict[key] - player.card_power[key] <= 0:
+                                rem_card_cost[key] = 0
+
+                            player.tokens[key] -= rem_card_cost[key]
+                            board_tokens[key] += rem_card_cost[key]
+                            print("The development card has been successfully purchased.")
+
+                        # Adding the card to the player's list
+                        selected_card = DC.dev_cards_lvl_one_copy.pop(card_num-1)
+                        player.card_list.append(selected_card)
+
+                    else:
+                        print("Sorry, but you cannot afford this one. Try again.")
+                        PlayerAction(player,board_tokens,player_list)
+
                 case 5 | 6 | 7 | 8:
-                    selected_card = DC.dev_cards_lvl_two_copy.pop(card_num-1-4)
-                    player.card_list.append(selected_card)
+                    
+                    sel_card = DC.dev_cards_lvl_two_copy[card_num - 1 - 4]
+                    sel_card_dict = sel_card[2]
+
+                    # Chat gpt helped me write the below line a little bit.
+                    if all(value <= (player.tokens[key] + player.card_power.get(key,0))  for key, value in sel_card_dict.items()):
+                        #print("You can afford this card!")
+
+                        # Remove tokens and put back into the pile
+                        rem_card_cost = {'green': 0, 'white': 0, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0}
+
+                        for key in rem_card_cost:
+                            if sel_card_dict[key] - player.card_power[key] > 0:
+                                rem_card_cost[key] = sel_card_dict[key] - player.card_power[key]
+                            elif sel_card_dict[key] - player.card_power[key] <= 0:
+                                rem_card_cost[key] = 0
+
+                            player.tokens[key] -= rem_card_cost[key]
+                            board_tokens[key] += rem_card_cost[key]
+
+                        print("The development card has been successfully purchased.")
+
+                        # Adding the card to the player's list
+                        selected_card = DC.dev_cards_lvl_two_copy.pop(card_num-1-4)
+                        player.card_list.append(selected_card)
+
+                    else:
+                        print("Sorry, but you cannot afford this one. Try again.")
+                        PlayerAction(player,board_tokens,player_list)
+
+
                 case 9 | 10 | 11 | 12:
-                    selected_card = DC.dev_cards_lvl_three_copy.pop(card_num-1-8)
-                    player.card_list.append(selected_card)
+
+                    sel_card = DC.dev_cards_lvl_three_copy[card_num - 1 - 8]
+                    sel_card_dict = sel_card[2]
+
+                    # Chat gpt helped me write the below line a little bit.
+                    if all(value <= (player.tokens[key] + player.card_power.get(key,0))  for key, value in sel_card_dict.items()):
+                        #print("You can afford this card!")
+
+                        # Remove tokens and put back into the pile
+                        rem_card_cost = {'green': 0, 'white': 0, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0}
+
+                        for key in rem_card_cost:
+                            if sel_card_dict[key] - player.card_power[key] > 0:
+                                rem_card_cost[key] = sel_card_dict[key] - player.card_power[key]
+                            elif sel_card_dict[key] - player.card_power[key] <= 0:
+                                rem_card_cost[key] = 0
+
+                            player.tokens[key] -= rem_card_cost[key]
+                            board_tokens[key] += rem_card_cost[key]
+                        
+                        print("The development card has been successfully purchased.")
+
+                        # Adding the card to the player's list
+                        selected_card = DC.dev_cards_lvl_three_copy.pop(card_num-1-8)
+                        player.card_list.append(selected_card)
+
+                    else:
+                        print("Sorry, but you cannot afford this one. Try again.")
+                        PlayerAction(player,board_tokens,player_list)
+
+
                 case _:
                     print("Incorrect input, please try again.")
                     PlayerAction(player,board_tokens,player_list)
 
-        case 3:
+        case 5:
             # Display other user's scores
             print("\nHere are the details of all the players")
             for n in range(len(player_list)):
