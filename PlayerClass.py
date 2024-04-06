@@ -1,13 +1,12 @@
 import ColorAlign as CA
-from token_manager import TokenManager 
+#from token_manager import TokenManager 
 
 class Player:
     def __init__(self,name):
         self.name = name
         self.points = 0
-        #self.tokens = TokenManager({'green': 2, 'white': 2, 'blue': 2, 'black': 2, 'red': 2, 'gold': 0})
-        self.tokens = {'green': 2, 'white': 2, 'blue': 2, 'black': 2, 'red': 2, 'gold': 0}
-        self.card_power = {'green': 2, 'white': 2, 'blue': 2, 'black': 2, 'red': 2, 'gold': 0}
+        self.tokens = {'green': 0, 'white': 0, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0}
+        self.card_power = {'green': 0, 'white': 0, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0}
         self.card_list = []
         self.card_hold = []
         self.noble_count = 0
@@ -24,11 +23,11 @@ class Player:
         print("Total Points:",self.points)
         print("Total Tokens:    ", self.tokens)
         print("Total Card Power:", self.card_power)
-        #iter = 0
-        #for coin in self.coinsList:
-        #    print(CA.colorAlign(iter) + ":",coin)
-        #    iter += 1
 
+        if self.card_hold != []:
+            print("Here are the card(s) currently held in your hand")
+            for card in self.card_hold:
+                 print("Color | Point Value | Cost: ", card[0] , "|", str(card[1]), "|", card[2])
 
     def card_power_calc(self):
         # Updates based on the dev cards held
@@ -42,14 +41,6 @@ class Player:
             key = card[0]
             self.card_power[key] += 1
 
-            """
-            card_dict = card[2]
-            #print("CARD", card)
-            for key in card_dict:
-                #print("KEY", key)
-                #print(card[key])
-                self.card_power[key] += card_dict[key]
-            """
 
     def points_update(self):
 
@@ -120,18 +111,26 @@ class Player:
     def pick_up_tokens(self,board_tokens):
         # This method should have all of the error handling etc
         print("\nNow pick 2 of the same token, 3 different tokens, or the Gold Joker and a card.")
-        print("Select the tokens that you would like in the following format.")
-        print("  [Green, White, Blue, Black, Red, Gold (Joker)]")
-        print("Ex. 1,      1,    0,     1,    0,   0 but with no spaces for 1 Green, 1 White, and 1 Black")
+        print("Provide the amount you would like for each color")
+        #print("Select the tokens that you would like in the following format.")
+        #print("  [Green, White, Blue, Black, Red, Gold (Joker)]")
+        #print("Ex. 1,      1,    0,     1,    0,   0 but with no spaces for 1 Green, 1 White, and 1 Black")
         # Could make this a lot more user friendly. Could just ask each color at a time.
-        choice = input("Provide your input here: ")
+        
+        choice_list_int = []
+
         # For now going to assume that people input this correctly. Could check the size.
+        choice_list_int.append(int(input("How many Green?: ")))
+        choice_list_int.append(int(input("How many White?: ")))
+        choice_list_int.append(int(input("How many Blue?: ")))
+        choice_list_int.append(int(input("How many Black?: ")))
+        choice_list_int.append(int(input("How many Red?: ")))
+        choice_list_int.append(0)
 
         #Turning the input into a list
-
-        choice_list = choice.split(",")
-        choice_list_int = [int(x) for x in choice_list]
-        print(choice_list_int)
+        #choice_list = choice.split(",")
+        #choice_list_int = [int(x) for x in choice_list]
+        #print(choice_list_int)
 
         #Turn choices into a dictionary
         choice_dict = {'green': 0, 'white': 0, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0}
@@ -143,7 +142,7 @@ class Player:
         choice_dict['red'] = choice_list_int[4]
         choice_dict['gold'] = choice_list_int[5]
 
-        print("Choice Dict: ",choice_dict)
+        #print("Choice Dict: ",choice_dict)
 
         # The Tokens
         #board_tokens - is a dict
