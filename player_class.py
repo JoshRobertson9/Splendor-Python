@@ -2,7 +2,7 @@
 #from token_manager import TokenManager 
 
 class Player:
-    def __init__(self,name):
+    def __init__(self, name):
         self.name = name
         self.points = 0
         self.tokens = {'green': 0, 'white': 0, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0}
@@ -52,7 +52,7 @@ class Player:
         # Each noble is worth 3 points, so you just need to retain the count of them you have.
         self.points = card_points + (self.noble_count)*3
 
-    def check_nobles(self,noble_deck):
+    def check_nobles(self, noble_deck):
         #print(noble_deck)
         match_list = []
         iter = 0
@@ -108,7 +108,7 @@ class Player:
     # Player Actions
         
     # Picks Tokens
-    def pick_up_tokens(self,board_tokens):
+    def pick_up_tokens(self, board_tokens):
         # This method should have all of the error handling etc
         print("\nNow pick 2 of the same token, 3 different tokens, or the Gold Joker and a card.")
         print("Provide the amount you would like for each color")
@@ -220,7 +220,7 @@ class Player:
             print("Something went wrong. Please re-enter your choice.")
             self.pick_up_tokens(board_tokens)
 
-    def buy_card(self,card_list):
+    def buy_card(self, card_list):
         self.card_list.append()
 
 

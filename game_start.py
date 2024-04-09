@@ -6,17 +6,15 @@ import random
 import player_class as PC
 
 def introText():
-    print()
-    print("Hello and welcome to Splendor - Python Edition.")
+
+    print("\nHello and welcome to Splendor - Python Edition.")
     num_players = int(input("How many humans are playing? Please provide a number 2-4. "))
 
-    #This section could possibly be made into a player array later, that may be more dynamic and manageable
-
     P1 = PC.Player(input("What is the name of player 1? "))    
-    #print(P1.name)
+    # print(P1.name)
 
     P2 = PC.Player(input("What is the name of player 2? "))    
-    #print(P2.name)
+    # print(P2.name)
 
     player_list = []
 

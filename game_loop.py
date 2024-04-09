@@ -33,49 +33,42 @@ def theLoop(player_list):
     while GameState == True:
 
         # All players will take a turn. 
-        for n in range(num_players):
+        for player in player_list:
 
-
-            #Display user's status
-            player_list[n].display_status()
-
+            # Display user's status
+            player.display_status()
             print("___________________________________\n")
 
-            #Display noble cards
+            # Display noble cards
             print("Noble Cards:", NC.noble_card_deck)
-
             print("___________________________________\n")
 
             # Display available cards
             DC.three_levels_display()
-
             print("___________________________________\n")
 
             # Display available tokens
-                # Create token display
             print("These are the available tokens to draw from.")
-            #print("Pick 3 different tokens or 2 of the same, or the Joker (Gold) and 1 card to hold.")
             print(board_tokens)
-
             print("___________________________________\n")
 
-            #The person's turn
-            PlayerAction(player_list[n],board_tokens,player_list)
+            # The person's turn
+            player_action(player, board_tokens, player_list)
 
             # Post-turn follow up actions
 
             # Update player's card power
-            player_list[n].card_power_calc()
+            player.card_power_calc()
 
             # Checks if they qualified for a noble card and gives one if so
                 # may just pick for now if the qualify for two and later update to let the player decide
-            player_list[n].check_nobles(NC.noble_card_deck)
+            player.check_nobles(NC.noble_card_deck)
 
             # Points update for that player - resets to 0 and re-calculates it.
-            player_list[n].points_update()
+            player.points_update()
 
             # If someone's points > = 15 -> Gamestate = False
-            if player_list[n].points >= 15:
+            if player.points >= 15:
                 print("Someone just got 15 or more points. The game ends after this round.")
                 GameState = False
 
@@ -84,14 +77,12 @@ def theLoop(player_list):
 
             # Clears the terminal after each peron's turn
             # Fake clear because it doesn't clear the scroll buffer
+            #os.system('cls' if os.name == 'nt' else 'clear')
             print("\n" * 50)
 
-            #os.system('cls' if os.name == 'nt' else 'clear')
 
-
-def PlayerAction(player,board_tokens,player_list):
-    print()
-    print("What will you do? Type the corresponding number and then press enter.")
+def player_action(player, board_tokens, player_list):
+    print("\nWhat will you do? Type the corresponding number and then press enter.")
     print("Option 1 - Pick Tokens")
     print("Option 2 - Buy a Development Card")
     print("Option 3 - Select Development Card & Joker to Reserve")
@@ -108,7 +99,6 @@ def PlayerAction(player,board_tokens,player_list):
         case 1:
             # Pick Tokens
             player.pick_up_tokens(board_tokens)
-            # Display Tokens
 
         case 2:
             # Buy card
@@ -146,7 +136,7 @@ def PlayerAction(player,board_tokens,player_list):
 
                     else:
                         print("Sorry, but you cannot afford this one. Try again.")
-                        PlayerAction(player,board_tokens,player_list)
+                        player_action(player, board_tokens, player_list)
 
                 case 5 | 6 | 7 | 8:
                     
@@ -177,8 +167,7 @@ def PlayerAction(player,board_tokens,player_list):
 
                     else:
                         print("Sorry, but you cannot afford this one. Try again.")
-                        PlayerAction(player,board_tokens,player_list)
-
+                        player_action(player, board_tokens, player_list)
 
                 case 9 | 10 | 11 | 12:
 
@@ -209,25 +198,22 @@ def PlayerAction(player,board_tokens,player_list):
 
                     else:
                         print("Sorry, but you cannot afford this one. Try again.")
-                        PlayerAction(player,board_tokens,player_list)
-
+                        player_action(player, board_tokens, player_list)
 
                 case _:
                     print("Incorrect input, please try again.")
-                    PlayerAction(player,board_tokens,player_list)
+                    player_action(player, board_tokens, player_list)
 
         # Select Dev Card
         case 3:
 
             if board_tokens['gold'] <= 0:
                 print("Sorry no Joker more tokens to select. Please choose something else.")
-                PlayerAction(player,board_tokens,player_list)
+                player_action(player, board_tokens, player_list)
 
             else:
                 # Assumes people put in a correct number.    
                 card_num = int(input("Please provide the number of the card that you would like (1-12). "))
-
-                #if card_num < 1 | card_num > 12:
 
                 match card_num:
                     case 1 | 2 | 3 | 4 :
@@ -246,13 +232,12 @@ def PlayerAction(player,board_tokens,player_list):
                 player.tokens['gold'] += 1
                 print("The Card has been reserved.")
 
-
         # Buying a Dev Card
         case 4:
             if player.card_hold == []:
                 print("You don't have any card's held to buy.")
                 print("Please make a different selection")
-                PlayerAction(player,board_tokens,player_list)
+                player_action(player, board_tokens, player_list)
 
             else :
                 print("Here are the cards you can choose from")
@@ -266,7 +251,7 @@ def PlayerAction(player,board_tokens,player_list):
 
                 if selection < 0 | selection > len(player.card_hold):
                     print("You have selected an invalid option. Please try again.")
-                    PlayerAction(player,board_tokens,player_list)
+                    player_action(player, board_tokens, player_list)
 
                 # We now know the list is not empty and the user has selected a real option
 
@@ -298,7 +283,7 @@ def PlayerAction(player,board_tokens,player_list):
 
                 else:
                     print("Sorry, but you cannot afford this one. Try again.")
-                    PlayerAction(player,board_tokens,player_list)
+                    player_action(player, board_tokens, player_list)
 
         # Display Scores
         case 5:
@@ -308,11 +293,10 @@ def PlayerAction(player,board_tokens,player_list):
                 player.display_status()
                 print()
             print("____________________________\n")
-            PlayerAction(player,board_tokens,player_list)
+            player_action(player, board_tokens, player_list)
 
         # Anything else.
         case _ :
             # Re-loops through the action questions
             print("Incorrect input, please try again.")
-            PlayerAction(player,board_tokens,player_list)
-
+            player_action(player, board_tokens, player_list)
