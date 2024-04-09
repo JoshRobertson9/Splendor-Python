@@ -1,6 +1,5 @@
-
-import PlayerClass as PC
-
+# My Modules
+import player_class as PC
 
 def winner_calc(player_list):
     
@@ -8,9 +7,9 @@ def winner_calc(player_list):
 
     final_scores = []
 
-    for n in range(len(player_list)):
-        print(player_list[n].name, f"had {player_list[n].points}.")
-        final_scores.append(player_list[n].points)
+    for player in player_list:
+        print(player.name, f"had {player.points}.")
+        final_scores.append(player.points)
 
     #print(final_scores)
     #print(max(final_scores))
@@ -19,5 +18,3 @@ def winner_calc(player_list):
 
     print("\nThe winner is: " + player_list[win_dex].name + "!!!")
     print("___________________________________\n")
-    
-

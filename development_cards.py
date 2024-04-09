@@ -1,9 +1,9 @@
-#Standard Imports
+# Existing Modules
 import copy
 import random
 
-#My Imports
-import ColorAlign as CA
+# My Modules
+import color_align as CA
 
 # Old Card Format
 # [CardColor, [costColorList], PointsWorth, CardLevel]
@@ -12,9 +12,7 @@ import ColorAlign as CA
 # [CardColor, PointValue, CardCostDict]
 # [Green, White, Blue, Black, Red, Gold]
 
-
 dev_cards_lvl_one = [
-
 ["green", 0, {'green': 1, 'white': 0, 'blue': 1, 'black': 1, 'red': 0, 'gold': 0}],
 ["white", 1, {'green': 4, 'white': 0, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0}],
 ["red", 0, {'green': 0, 'white': 3, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0}],
@@ -55,12 +53,10 @@ dev_cards_lvl_one = [
 ["black", 0, {'green': 2, 'white': 0, 'blue': 0, 'black': 0, 'red': 1, 'gold': 0}],
 ["black", 0, {'green': 1, 'white': 0, 'blue': 0, 'black': 1, 'red': 3, 'gold': 0}],
 ["blue", 0, {'green': 0, 'white': 0, 'blue': 0, 'black': 3, 'red': 0, 'gold': 0}]
-
 ]
 
 # Development Card Deck Level 2 - not updated yet
 dev_cards_lvl_two = [
-
 ["red", 2, {'green': 0, 'white': 0, 'blue': 0, 'black': 5, 'red': 0, 'gold': 0}],
 ["white", 2, {'green': 0, 'white': 0, 'blue': 0, 'black': 3, 'red': 5, 'gold': 0}],
 ["black", 3, {'green': 0, 'white': 0, 'blue': 0, 'black': 6, 'red': 0, 'gold': 0}],
@@ -91,12 +87,10 @@ dev_cards_lvl_two = [
 ["blue", 2, {'green': 0, 'white': 0, 'blue': 5, 'black': 0, 'red': 0, 'gold': 0}],
 ["black", 1, {'green': 3, 'white': 3, 'blue': 0, 'black': 2, 'red': 0, 'gold': 0}],
 ["black", 2, {'green': 4, 'white': 0, 'blue': 1, 'black': 0, 'red': 2, 'gold': 0}]
-
 ]
 
 # Development Card Deck Level 3 - not updated yet
 dev_cards_lvl_three = [
-
 ["white", 3, {'green': 3, 'white': 0, 'blue': 3, 'black': 3, 'red': 5, 'gold': 0}],
 ["black", 4, {'green': 3, 'white': 0, 'blue': 0, 'black': 3, 'red': 6, 'gold': 0}],
 ["blue", 4, {'green': 0, 'white': 7, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0}],
@@ -117,7 +111,6 @@ dev_cards_lvl_three = [
 ["green", 4, {'green': 0, 'white': 0, 'blue': 7, 'black': 0, 'red': 0, 'gold': 0}],
 ["black", 5, {'green': 0, 'white': 0, 'blue': 0, 'black': 3, 'red': 7, 'gold': 0}],
 ["green", 5, {'green': 3, 'white': 0, 'blue': 7, 'black': 0, 'red': 0, 'gold': 0}]
-
 ]
 
 
@@ -165,12 +158,10 @@ dev_cards_lvl_one_copy = copy.deepcopy(dev_cards_lvl_one)
 dev_cards_lvl_two_copy = copy.deepcopy(dev_cards_lvl_two)
 dev_cards_lvl_three_copy = copy.deepcopy(dev_cards_lvl_three)
 
-
 #Shuffle Cards
 random.shuffle(dev_cards_lvl_one_copy)
 random.shuffle(dev_cards_lvl_two_copy)
 random.shuffle(dev_cards_lvl_three_copy)
-
 
 #PrintCard(dev_cards_lvl_three_copy,0)
 
@@ -199,10 +190,8 @@ def display_top_four(card_list):
     else:
         print("Something is wrong with the card deck.")
 
-
 #Example:
 #display_top_four(dev_cards_lvl_three_copy)
-
 
 #Display the three levels
 
@@ -231,9 +220,5 @@ def removecard(card_list,index):
     card = card_list.pop(index)
     return card
 
-
 #removecard(dev_cards_lvl_three_copy,0)
 #three_levels_display()
-
-
-

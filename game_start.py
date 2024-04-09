@@ -1,9 +1,9 @@
-# Existing Imports
+# Existing Modules
 import os
 import random
 
-# My Imports
-import PlayerClass as PC
+# My Modules
+import player_class as PC
 
 def introText():
     print()
@@ -23,7 +23,7 @@ def introText():
     player_list.append(P1)
     player_list.append(P2)
     #print(player_list)
-    #player_list[1].displayStatus()
+    #player_list[1].display_status()
 
     if num_players > 2:
         P3 = PC.Player(input("What is the name of player 3? "))    

@@ -1,2 +1,2 @@
 
-import GameLoop as GL
+import game_loop as GL
