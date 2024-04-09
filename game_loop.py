@@ -1,12 +1,11 @@
-# Existing Imports
+# Existing Modules
 import os
 import random
 
-# My Imports
-import DevelopmentCards as DC
-import PlayerClass as PC
+# My Modules
+import development_cards as DC
+import player_class as PC
 import noble_cards as NC
-
 
 def theLoop(player_list):
     
@@ -28,7 +27,6 @@ def theLoop(player_list):
     # Prep Nobles
     NC.prep_nobles(num_players)
 
-
     # Start of the game loop
     GameState = True
 
@@ -39,7 +37,7 @@ def theLoop(player_list):
 
 
             #Display user's status
-            player_list[n].displayStatus()
+            player_list[n].display_status()
 
             print("___________________________________\n")
 
@@ -230,7 +228,6 @@ def PlayerAction(player,board_tokens,player_list):
                 card_num = int(input("Please provide the number of the card that you would like (1-12). "))
 
                 #if card_num < 1 | card_num > 12:
-                #    pass
 
                 match card_num:
                     case 1 | 2 | 3 | 4 :
@@ -307,8 +304,8 @@ def PlayerAction(player,board_tokens,player_list):
         case 5:
             # Display other user's scores
             print("\nHere are the details of all the players")
-            for n in range(len(player_list)):
-                player_list[n].displayStatus()
+            for index, player in enumerate(player_list):
+                player.display_status()
                 print()
             print("____________________________\n")
             PlayerAction(player,board_tokens,player_list)

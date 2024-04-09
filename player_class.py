@@ -1,4 +1,4 @@
-import ColorAlign as CA
+#import color_align as CA
 #from token_manager import TokenManager 
 
 class Player:
@@ -17,7 +17,7 @@ class Player:
         # List of the indexes of all dev cards that the user has
         self.DevelopmentCards = []
 
-    def displayStatus(self):
+    def display_status(self):
         print("Player Status")
         print("Name:", self.name)
         print("Total Points:",self.points)
@@ -168,7 +168,6 @@ class Player:
 
         # Check whether the input is too big or too small
         if num_tokens > 3 | num_tokens <= 0:
-            pass
             print("You picked too many tokens, too little, or a negative amount. Nothing will happen.")
             self.pick_up_tokens(board_tokens)
 
@@ -222,12 +221,11 @@ class Player:
             self.pick_up_tokens(board_tokens)
 
     def buy_card(self,card_list):
-        pass
         self.card_list.append()
 
 
 #Testing
 """       
 P1 = Player("Josh")
-P1.displayStatus()
+P1.display_status()
 """
