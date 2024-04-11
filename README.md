@@ -14,6 +14,8 @@ Future Development
 
     Additional minor error proofing throughout.
     
+    Colored fonts to make it easier to read.
+
     Could display the total number of remaining cards in a level deck
 
     Can't use Jokers to buy yet.
