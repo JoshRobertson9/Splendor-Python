@@ -7,6 +7,7 @@ class Player:
         self.points = 0
         self.tokens = {'green': 0, 'white': 0, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0}
         self.card_power = {'green': 0, 'white': 0, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0}
+        #self.card_power = {'green': 4, 'white': 4, 'blue': 4, 'black': 4, 'red': 4, 'gold': 0}
         self.card_list = []
         self.card_hold = []
         self.noble_count = 0
@@ -110,7 +111,8 @@ class Player:
     # Picks Tokens
     def pick_up_tokens(self, board_tokens):
         # This method should have all of the error handling etc
-        print("\nNow pick 2 of the same token, 3 different tokens, or the Gold Joker and a card.")
+        print("\nNow pick 2 of the same token or 3 different tokens.")
+        #print("\nNow pick 2 of the same token, 3 different tokens, or the Gold Joker and a card.")
         print("Provide the amount you would like for each color")
         #print("Select the tokens that you would like in the following format.")
         #print("  [Green, White, Blue, Black, Red, Gold (Joker)]")
@@ -204,18 +206,21 @@ class Player:
                 print("Please pick again.")
                 self.pick_up_tokens(board_tokens)
 
-        elif num_tokens == 1 and choice_list_int[5] == 1 :
+        # Getting a Joker is now handled separately, so only left if changed later
+        
+        #elif num_tokens == 1 and choice_list_int[5] == 1 :
             #Joker Token situation handling
 
             # increase joker count by _ amount
-            self.tokens['gold'] += choice_dict['gold']
+        #    self.tokens['gold'] += choice_dict['gold']
             # decrease token count by _ amount
-            board_tokens['gold'] -= choice_dict['gold']
+        #    board_tokens['gold'] -= choice_dict['gold']
 
             # Add the card to the player's hand.
-            print("Still need to add the card to the player's hand too...")
+        #    print("Still need to add the card to the player's hand too...")
             #self.card_hold.append()
-
+        
+            
         else:
             print("Something went wrong. Please re-enter your choice.")
             self.pick_up_tokens(board_tokens)

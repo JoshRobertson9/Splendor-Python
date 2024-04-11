@@ -128,7 +128,7 @@ def player_action(player, board_tokens, player_list):
 
                             player.tokens[key] -= rem_card_cost[key]
                             board_tokens[key] += rem_card_cost[key]
-                            print("The development card has been successfully purchased.")
+                        print("The development card has been successfully purchased.")
 
                         # Adding the card to the player's list
                         selected_card = DC.dev_cards_lvl_one_copy.pop(card_num-1)

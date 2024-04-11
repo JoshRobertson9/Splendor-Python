@@ -8,7 +8,7 @@ import player_class as PC
 def introText():
 
     print("\nHello and welcome to Splendor - Python Edition.")
-    num_players = int(input("How many humans are playing? Please provide a number 2-4. "))
+    num_players = int(input("How many people are playing? No computer players are available at this time.\nPlease provide a number 2-4. "))
 
     P1 = PC.Player(input("What is the name of player 1? "))    
     # print(P1.name)
