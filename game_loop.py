@@ -1,6 +1,7 @@
 # Existing Modules
 import os
 import random
+import json
 
 # My Modules
 import development_cards as DC
@@ -88,6 +89,7 @@ def player_action(player, board_tokens, player_list):
     print("Option 3 - Select Development Card & Joker to Reserve")
     print("Option 4 - Purchase a held Development Card")
     print("Option 5 - Display all user's details")
+    print("Option 6 - Save the game and exit")
 
     # Need to add error handling for non-int's
     try:
@@ -295,7 +297,26 @@ def player_action(player, board_tokens, player_list):
             print("____________________________\n")
             player_action(player, board_tokens, player_list)
 
-        # Anything else.
+        # Save (and Exit) Game
+        case 6:
+            # Display other user's scores
+            print("Right now this just saves the player data.")
+
+            player.display_status()
+            #players_json_string = json.dumps(player,indent=4)
+            
+            players_json_string = player.toJSON()
+
+            file_path = "game_save.json"
+
+            with open(file_path,"w") as j_file:
+                j_file.write(players_json_string)
+
+            print("The player data has been saved!")
+            lll = input("Press enter to continue the game and your turn.")
+            player_action(player, board_tokens, player_list)
+
+        # Anything else
         case _ :
             # Re-loops through the action questions
             print("Incorrect input, please try again.")

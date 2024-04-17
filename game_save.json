@@ -1,0 +1,69 @@
+{
+    "name": "JJJ",
+    "points": 0,
+    "tokens": {
+        "green": 0,
+        "white": 0,
+        "blue": 0,
+        "black": 0,
+        "red": 0,
+        "gold": 3
+    },
+    "card_power": {
+        "green": 0,
+        "white": 0,
+        "blue": 0,
+        "black": 0,
+        "red": 0,
+        "gold": 0
+    },
+    "card_list": [],
+    "card_hold": [
+        [
+            "black",
+            0,
+            {
+                "green": 1,
+                "white": 0,
+                "blue": 0,
+                "black": 1,
+                "red": 3,
+                "gold": 0
+            }
+        ],
+        [
+            "blue",
+            0,
+            {
+                "green": 1,
+                "white": 1,
+                "blue": 0,
+                "black": 1,
+                "red": 2,
+                "gold": 0
+            }
+        ],
+        [
+            "red",
+            0,
+            {
+                "green": 1,
+                "white": 1,
+                "blue": 1,
+                "black": 1,
+                "red": 0,
+                "gold": 0
+            }
+        ]
+    ],
+    "noble_count": 0,
+    "coinsList": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "DevelopmentCards": []
+}

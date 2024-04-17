@@ -1,5 +1,6 @@
 #import color_align as CA
 #from token_manager import TokenManager 
+import json
 
 class Player:
     def __init__(self, name):
@@ -228,6 +229,9 @@ class Player:
     def buy_card(self, card_list):
         self.card_list.append()
 
+    def toJSON(self):
+        #return json.dumps(self,default=lambda o: o.__dict__,sort_keys=True, indent=4)
+        return json.dumps(self,default=lambda o: o.__dict__, indent=4)
 
 #Testing
 """       
