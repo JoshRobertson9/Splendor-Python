@@ -4,6 +4,8 @@ This is a chance to demonstrate my python skills, practice making games, and pot
 
 This project now works with the exception of being able to buy with jokers and a few things might break if you tried really hard to, but as a whole you can get from the start of the game to the end as intended.
 
+You can even save your game state to a JSON file at the end of each round if you need to leave part way during the game. The next time you can load the save state from a JSON file and continue from there.
+
 The game is currently text based, which isn't as easy to play, but it was fun to see how to make the best of that.
 
 Below are some of my development notes for future development and past lessons learned.
@@ -33,6 +35,8 @@ Future Development
 
 What I'm learning / Lessons Learned
 
+    Saving and loading data from a JSON file.
+
     Managing many modules while maintaining the necessary access to data
 
     Standard Pythton data types and common loops
@@ -51,7 +55,7 @@ What I'm learning / Lessons Learned
 
     The way you implement a solution can and does matter, but sometimes its best to just get started and change it from there. Hard to solve it all in your head.
 
-    used several existing modules. os, copy, & random.
+    I used several existing modules such as os, copy, random, and json.
 
     cls has an error and won't delete the scrollback buffer so had to make a workaround for that.
 
@@ -62,5 +66,4 @@ What I'm learning / Lessons Learned
     Sometimes writing the comment of things to add in the future takes more time than to just fix it now.
 
     Sometimes you have to delete code you worked hard on if its no longer the best solution.
-
 

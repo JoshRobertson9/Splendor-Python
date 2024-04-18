@@ -1,5 +1,6 @@
 #import color_align as CA
 #from token_manager import TokenManager 
+import json
 
 class Player:
     def __init__(self, name):
@@ -17,6 +18,9 @@ class Player:
 
         # List of the indexes of all dev cards that the user has
         self.DevelopmentCards = []
+
+    def return_name(self):
+        return self.name
 
     def display_status(self):
         print("Player Status")
@@ -54,6 +58,8 @@ class Player:
         self.points = card_points + (self.noble_count)*3
 
     def check_nobles(self, noble_deck):
+        # Just picks one for now if they qualify for two and later update to let the player decide
+            
         #print(noble_deck)
         match_list = []
         iter = 0
@@ -228,6 +234,9 @@ class Player:
     def buy_card(self, card_list):
         self.card_list.append()
 
+    def toJSON(self):
+        #return json.dumps(self,default=lambda o: o.__dict__,sort_keys=True, indent=4)
+        return json.dumps(self,default=lambda o: o.__dict__, indent=4)
 
 #Testing
 """       

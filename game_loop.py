@@ -1,31 +1,16 @@
 # Existing Modules
 import os
 import random
+import json
 
 # My Modules
 import development_cards as DC
 import player_class as PC
-import noble_cards as NC
+#import noble_cards as NC
 
-def theLoop(player_list):
-    
-    num_players = len(player_list)
+def theLoop(player_list,board_tokens,noble_cards, dclo, dclt, dclr):
 
-    board_tokens = {'green': 4, 'white': 4, 'blue': 4, 'black': 4, 'red': 4, 'gold': 5}
-
-    # Prep Tokens
-    match num_players:
-        case 2:
-            board_tokens = {'green': 4, 'white': 4, 'blue': 4, 'black': 4, 'red': 4, 'gold': 5}
-        case 3:
-            board_tokens = {'green': 5, 'white': 5, 'blue': 5, 'black': 5, 'red': 5, 'gold': 5}
-        case 4:
-            board_tokens = {'green': 7, 'white': 7, 'blue': 7, 'black': 7, 'red': 7, 'gold': 5}
-        case _ :
-            print("Error: Invalid Number of players listed.")
-
-    # Prep Nobles
-    NC.prep_nobles(num_players)
+    #round_num = 1
 
     # Start of the game loop
     GameState = True
@@ -35,59 +20,111 @@ def theLoop(player_list):
         # All players will take a turn. 
         for player in player_list:
 
-            # Display user's status
-            player.display_status()
-            print("___________________________________\n")
+            # Display the board
+            display_board(player, noble_cards, board_tokens, dclo, dclt, dclr)
 
-            # Display noble cards
-            print("Noble Cards:", NC.noble_card_deck)
-            print("___________________________________\n")
+            # The Player's turn
+            player_action(player, board_tokens, player_list, dclo, dclt, dclr)
 
-            # Display available cards
-            DC.three_levels_display()
-            print("___________________________________\n")
-
-            # Display available tokens
-            print("These are the available tokens to draw from.")
-            print(board_tokens)
-            print("___________________________________\n")
-
-            # The person's turn
-            player_action(player, board_tokens, player_list)
-
-            # Post-turn follow up actions
-
-            # Update player's card power
-            player.card_power_calc()
-
-            # Checks if they qualified for a noble card and gives one if so
-                # may just pick for now if the qualify for two and later update to let the player decide
-            player.check_nobles(NC.noble_card_deck)
-
-            # Points update for that player - resets to 0 and re-calculates it.
-            player.points_update()
-
-            # If someone's points > = 15 -> Gamestate = False
+            # Post-turn Player updates
+            player_update(player,noble_cards)
+            
+            # If Player's points >= 15 then Gamestate = False
             if player.points >= 15:
                 print("Someone just got 15 or more points. The game ends after this round.")
                 GameState = False
 
-            # turn end text
+            # End of Player turn text
             filler = input("Your turn has ended. Press enter to move to the next player.")
 
-            # Clears the terminal after each peron's turn
-            # Fake clear because it doesn't clear the scroll buffer
-            #os.system('cls' if os.name == 'nt' else 'clear')
+            # "Clears" the terminal after each peron's turn
             print("\n" * 50)
 
+        # Option to save the Game
+        #save_q = input(f"That ends round {round_num}. Would you like to save the game? (yes) ")
+        save_q = input(f"The current round has now ended. Would you like to save the game? If so, type 'yes'. ")
+        #round_num += 1
+        #save_q = "yes"
 
-def player_action(player, board_tokens, player_list):
+        if save_q == "yes":
+
+            # Display other user's scores
+            #print("Right now this just saves the player data.")
+            #player.display_status()
+            #players_json_string = json.dumps(player,indent=4)
+            #players_json_string = player.toJSON()
+
+            file_path = "game_save.json"
+
+
+            with open(file_path,"w") as j_file:
+                j_file.write("[\n")
+                
+                # Writing the board tokens to the JSON
+                #j_file.write("\n")
+                json.dump(board_tokens,j_file, indent=4)
+                j_file.write(",\n")
+
+
+                # Writing the noble card deck to the JSON
+                #j_file.write("\n")
+                json.dump(noble_cards,j_file, indent=4)
+                j_file.write(",\n")
+
+                # Writing the Development card decks to the JSON
+                #json.dump(dev_cards_lvl_one_copy,j_file, indent=4)
+                #j_file.write(",\n")
+                dev_card_decks_dict = {"Deck1": dclo,"Deck2": dclt, "Deck3" : dclr}
+                json.dump(dev_card_decks_dict,j_file, indent=4)
+                j_file.write(",\n")
+
+                # Writing the Player List to the JSON
+                j_file.write("[\n")
+                # j_file.write(players_json_string)
+                
+                for pl in player_list:
+                    j_file.write(pl.toJSON())
+                    if pl is not player_list[-1]:
+                        j_file.write(",")
+
+                j_file.write("\n]")
+                j_file.write("\n]")
+
+            print("The player data has been saved!")
+            lll = input("Press enter to continue the game and your turn.")
+        
+        print("\n" * 50)
+
+
+def display_board(player, noble_cards, board_tokens, dclo, dclt, dclr):
+    
+    # Display user's status
+    player.display_status()
+    print("___________________________________\n")
+
+    # Display noble cards
+    print("Noble Cards:", noble_cards)
+    print("___________________________________\n")
+
+    # Display available cards
+    DC.three_levels_display(dclo, dclt, dclr)
+    print("___________________________________\n")
+
+    # Display available tokens
+    print("These are the available tokens to draw from.")
+    print(board_tokens)
+    print("___________________________________\n")
+
+
+def player_action(player, board_tokens, player_list, dclo, dclt, dclr):
     print("\nWhat will you do? Type the corresponding number and then press enter.")
     print("Option 1 - Pick Tokens")
     print("Option 2 - Buy a Development Card")
     print("Option 3 - Select Development Card & Joker to Reserve")
     print("Option 4 - Purchase a held Development Card")
     print("Option 5 - Display all user's details")
+    #print("Option 6 - Save the game and exit")
+    #print("Player Name:", player.return_name())
 
     # Need to add error handling for non-int's
     try:
@@ -96,12 +133,13 @@ def player_action(player, board_tokens, player_list):
         choice = 0
 
     match choice:
+        # Pick Tokens
         case 1:
-            # Pick Tokens
             player.pick_up_tokens(board_tokens)
 
+        # Buy card
         case 2:
-            # Buy card
+            
             try:
                 card_num = int(input("Please provide the number of the card that you would like. "))
             except ValueError:
@@ -110,7 +148,7 @@ def player_action(player, board_tokens, player_list):
             match card_num:
                 case 1 | 2 | 3 | 4 :
 
-                    sel_card = DC.dev_cards_lvl_one_copy[card_num - 1]
+                    sel_card = dclo[card_num - 1]
                     sel_card_dict = sel_card[2]
 
                     # Chat gpt helped me write the below line a little bit.
@@ -131,16 +169,16 @@ def player_action(player, board_tokens, player_list):
                         print("The development card has been successfully purchased.")
 
                         # Adding the card to the player's list
-                        selected_card = DC.dev_cards_lvl_one_copy.pop(card_num-1)
+                        selected_card = dclo.pop(card_num-1)
                         player.card_list.append(selected_card)
 
                     else:
                         print("Sorry, but you cannot afford this one. Try again.")
-                        player_action(player, board_tokens, player_list)
+                        player_action(player, board_tokens, player_list, dclo, dclt, dclr)
 
                 case 5 | 6 | 7 | 8:
                     
-                    sel_card = DC.dev_cards_lvl_two_copy[card_num - 1 - 4]
+                    sel_card = dclt[card_num - 1 - 4]
                     sel_card_dict = sel_card[2]
 
                     # Chat gpt helped me write the below line a little bit.
@@ -162,16 +200,16 @@ def player_action(player, board_tokens, player_list):
                         print("The development card has been successfully purchased.")
 
                         # Adding the card to the player's list
-                        selected_card = DC.dev_cards_lvl_two_copy.pop(card_num-1-4)
+                        selected_card = dclt.pop(card_num-1-4)
                         player.card_list.append(selected_card)
 
                     else:
                         print("Sorry, but you cannot afford this one. Try again.")
-                        player_action(player, board_tokens, player_list)
+                        player_action(player, board_tokens, player_list, dclo, dclt, dclr)
 
                 case 9 | 10 | 11 | 12:
 
-                    sel_card = DC.dev_cards_lvl_three_copy[card_num - 1 - 8]
+                    sel_card = dclr[card_num - 1 - 8]
                     sel_card_dict = sel_card[2]
 
                     # Chat gpt helped me write the below line a little bit.
@@ -193,23 +231,23 @@ def player_action(player, board_tokens, player_list):
                         print("The development card has been successfully purchased.")
 
                         # Adding the card to the player's list
-                        selected_card = DC.dev_cards_lvl_three_copy.pop(card_num-1-8)
+                        selected_card = dclr.pop(card_num-1-8)
                         player.card_list.append(selected_card)
 
                     else:
                         print("Sorry, but you cannot afford this one. Try again.")
-                        player_action(player, board_tokens, player_list)
+                        player_action(player, board_tokens, player_list, dclo, dclt, dclr)
 
                 case _:
                     print("Incorrect input, please try again.")
-                    player_action(player, board_tokens, player_list)
+                    player_action(player, board_tokens, player_list, dclo, dclt, dclr)
 
         # Select Dev Card
         case 3:
 
             if board_tokens['gold'] <= 0:
                 print("Sorry no Joker more tokens to select. Please choose something else.")
-                player_action(player, board_tokens, player_list)
+                player_action(player, board_tokens, player_list, dclo, dclt, dclr)
 
             else:
                 # Assumes people put in a correct number.    
@@ -217,15 +255,15 @@ def player_action(player, board_tokens, player_list):
 
                 match card_num:
                     case 1 | 2 | 3 | 4 :
-                        selected_card = DC.dev_cards_lvl_one_copy.pop(card_num-1)
+                        selected_card = dclo.pop(card_num-1)
                         player.card_hold.append(selected_card)
 
                     case 5 | 6 | 7 | 8 :
-                        selected_card = DC.dev_cards_lvl_two_copy.pop(card_num-1-4)
+                        selected_card = dclt.pop(card_num-1-4)
                         player.card_hold.append(selected_card)
 
                     case 9 | 10 | 11 | 12 :
-                        selected_card = DC.dev_cards_lvl_three_copy.pop(card_num-1-8)
+                        selected_card = dclr.pop(card_num-1-8)
                         player.card_hold.append(selected_card)
 
                 board_tokens['gold'] -= 1
@@ -237,7 +275,7 @@ def player_action(player, board_tokens, player_list):
             if player.card_hold == []:
                 print("You don't have any card's held to buy.")
                 print("Please make a different selection")
-                player_action(player, board_tokens, player_list)
+                player_action(player, board_tokens, player_list, dclo, dclt, dclr)
 
             else :
                 print("Here are the cards you can choose from")
@@ -251,7 +289,7 @@ def player_action(player, board_tokens, player_list):
 
                 if selection < 0 | selection > len(player.card_hold):
                     print("You have selected an invalid option. Please try again.")
-                    player_action(player, board_tokens, player_list)
+                    player_action(player, board_tokens, player_list, dclo, dclt, dclr)
 
                 # We now know the list is not empty and the user has selected a real option
 
@@ -283,9 +321,9 @@ def player_action(player, board_tokens, player_list):
 
                 else:
                     print("Sorry, but you cannot afford this one. Try again.")
-                    player_action(player, board_tokens, player_list)
+                    player_action(player, board_tokens, player_list, dclo, dclt, dclr)
 
-        # Display Scores
+        # Display All Player's Scores
         case 5:
             # Display other user's scores
             print("\nHere are the details of all the players")
@@ -293,10 +331,26 @@ def player_action(player, board_tokens, player_list):
                 player.display_status()
                 print()
             print("____________________________\n")
-            player_action(player, board_tokens, player_list)
+            player_action(player, board_tokens, player_list, dclo, dclt, dclr)
 
-        # Anything else.
+        # Save (and Exit) Game
+        case 6:
+            pass
+
+        # Anything else
         case _ :
             # Re-loops through the action questions
             print("Incorrect input, please try again.")
-            player_action(player, board_tokens, player_list)
+            player_action(player, board_tokens, player_list, dclo, dclt, dclr)
+
+
+def player_update(player,noble_cards):
+
+    # Update player's card power
+    player.card_power_calc()
+
+    # Checks if they qualified for a noble card and gives one if so
+    player.check_nobles(noble_cards)
+
+    # Points update for that player - resets to 0 and re-calculates it.
+    player.points_update()
