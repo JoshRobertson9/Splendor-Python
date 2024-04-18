@@ -19,6 +19,9 @@ class Player:
         # List of the indexes of all dev cards that the user has
         self.DevelopmentCards = []
 
+    def return_name(self):
+        return self.name
+
     def display_status(self):
         print("Player Status")
         print("Name:", self.name)
@@ -55,6 +58,8 @@ class Player:
         self.points = card_points + (self.noble_count)*3
 
     def check_nobles(self, noble_deck):
+        # Just picks one for now if they qualify for two and later update to let the player decide
+            
         #print(noble_deck)
         match_list = []
         iter = 0

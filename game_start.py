@@ -4,11 +4,18 @@ import random
 
 # My Modules
 import player_class as PC
+import noble_cards as NC
+import development_cards as DC
 
 def introText():
 
-    #print("\nHello and welcome to Splendor - Python Edition.")
-    num_players = int(input("How many people are playing? No computer players are available at this time.\nPlease provide a number 2-4. "))
+    # Player Initialization
+    try:
+        num_players = int(input("How many people are playing? No computer players are available at this time.\nPlease provide a number 2-4. "))
+    except ValueError:
+        print("Invalid input for the number of players. Number of players is now set to 2.\n")
+        num_players = 2
+
 
     P1 = PC.Player(input("What is the name of player 1? "))    
     # print(P1.name)
@@ -39,8 +46,32 @@ def introText():
     print("\nThe player list has been randomly shuffled.")
     random.shuffle(player_list)
 
+    # Board Token Initialization
+    board_tokens = {'green': 4, 'white': 4, 'blue': 4, 'black': 4, 'red': 4, 'gold': 5}
+
+    # Prep Tokens
+    match len(player_list):
+        case 2:
+            board_tokens = {'green': 4, 'white': 4, 'blue': 4, 'black': 4, 'red': 4, 'gold': 5}
+        case 3:
+            board_tokens = {'green': 5, 'white': 5, 'blue': 5, 'black': 5, 'red': 5, 'gold': 5}
+        case 4:
+            board_tokens = {'green': 7, 'white': 7, 'blue': 7, 'black': 7, 'red': 7, 'gold': 5}
+        case _ :
+            print("Error: Invalid Number of players listed.")
+
+
+    # Preparing Noble Cards
+    noble_cards = NC.prep_nobles(len(player_list))
+
+
+    # Preparing the Development Cards
+    dclo, dclt, dclr = DC.create_card_decks()
+
+
+    # The end of the game setup
     print("This ends the setup phase. Time to start the game.")
     filler = input("Press enter to start the game.")
     os.system('cls' if os.name == 'nt' else 'clear')
 
-    return player_list
+    return player_list, board_tokens, noble_cards, dclo, dclt, dclr
