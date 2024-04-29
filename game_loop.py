@@ -153,24 +153,8 @@ def player_action(player, board_tokens, player_list, dclo, dclt, dclr):
 
                     # Chat gpt helped me write the below line a little bit.
                     if all(value <= (player.tokens[key] + player.card_power.get(key,0))  for key, value in sel_card_dict.items()):
-                        #print("You can afford this card!")
-
-                        # Remove tokens and put back into the pile
-                        rem_card_cost = {'green': 0, 'white': 0, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0}
-
-                        for key in rem_card_cost:
-                            if sel_card_dict[key] - player.card_power[key] > 0:
-                                rem_card_cost[key] = sel_card_dict[key] - player.card_power[key]
-                            elif sel_card_dict[key] - player.card_power[key] <= 0:
-                                rem_card_cost[key] = 0
-
-                            player.tokens[key] -= rem_card_cost[key]
-                            board_tokens[key] += rem_card_cost[key]
-                        print("The development card has been successfully purchased.")
-
-                        # Adding the card to the player's list
-                        selected_card = dclo.pop(card_num-1)
-                        player.card_list.append(selected_card)
+                        
+                        buy_card(player, dclo, sel_card_dict, board_tokens, card_num, 0)
 
                     else:
                         print("Sorry, but you cannot afford this one. Try again.")
@@ -183,25 +167,7 @@ def player_action(player, board_tokens, player_list, dclo, dclt, dclr):
 
                     # Chat gpt helped me write the below line a little bit.
                     if all(value <= (player.tokens[key] + player.card_power.get(key,0))  for key, value in sel_card_dict.items()):
-                        #print("You can afford this card!")
-
-                        # Remove tokens and put back into the pile
-                        rem_card_cost = {'green': 0, 'white': 0, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0}
-
-                        for key in rem_card_cost:
-                            if sel_card_dict[key] - player.card_power[key] > 0:
-                                rem_card_cost[key] = sel_card_dict[key] - player.card_power[key]
-                            elif sel_card_dict[key] - player.card_power[key] <= 0:
-                                rem_card_cost[key] = 0
-
-                            player.tokens[key] -= rem_card_cost[key]
-                            board_tokens[key] += rem_card_cost[key]
-
-                        print("The development card has been successfully purchased.")
-
-                        # Adding the card to the player's list
-                        selected_card = dclt.pop(card_num-1-4)
-                        player.card_list.append(selected_card)
+                        buy_card(player, dclt, sel_card_dict, board_tokens, card_num, 4)
 
                     else:
                         print("Sorry, but you cannot afford this one. Try again.")
@@ -214,26 +180,8 @@ def player_action(player, board_tokens, player_list, dclo, dclt, dclr):
 
                     # Chat gpt helped me write the below line a little bit.
                     if all(value <= (player.tokens[key] + player.card_power.get(key,0))  for key, value in sel_card_dict.items()):
-                        #print("You can afford this card!")
-
-                        # Remove tokens and put back into the pile
-                        rem_card_cost = {'green': 0, 'white': 0, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0}
-
-                        for key in rem_card_cost:
-                            if sel_card_dict[key] - player.card_power[key] > 0:
-                                rem_card_cost[key] = sel_card_dict[key] - player.card_power[key]
-                            elif sel_card_dict[key] - player.card_power[key] <= 0:
-                                rem_card_cost[key] = 0
-
-                            player.tokens[key] -= rem_card_cost[key]
-                            board_tokens[key] += rem_card_cost[key]
+                        buy_card(player, dclr, sel_card_dict, board_tokens, card_num, 8)
                         
-                        print("The development card has been successfully purchased.")
-
-                        # Adding the card to the player's list
-                        selected_card = dclr.pop(card_num-1-8)
-                        player.card_list.append(selected_card)
-
                     else:
                         print("Sorry, but you cannot afford this one. Try again.")
                         player_action(player, board_tokens, player_list, dclo, dclt, dclr)
@@ -252,6 +200,7 @@ def player_action(player, board_tokens, player_list, dclo, dclt, dclr):
             else:
                 # Assumes people put in a correct number.    
                 card_num = int(input("Please provide the number of the card that you would like (1-12). "))
+                # Doesn't error handle for a number outside of that range
 
                 match card_num:
                     case 1 | 2 | 3 | 4 :
@@ -334,8 +283,8 @@ def player_action(player, board_tokens, player_list, dclo, dclt, dclr):
             player_action(player, board_tokens, player_list, dclo, dclt, dclr)
 
         # Save (and Exit) Game
-        case 6:
-            pass
+        case 11:
+            print("You skipped your turn with the secret code.")
 
         # Anything else
         case _ :
@@ -354,3 +303,26 @@ def player_update(player,noble_cards):
 
     # Points update for that player - resets to 0 and re-calculates it.
     player.points_update()
+
+
+# Buying the card if is allowed
+def buy_card(player, deck, sel_card_dict, board_tokens, card_num, offset):
+
+    # Remove tokens and put back into the pile
+    rem_card_cost = {'green': 0, 'white': 0, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0}
+
+    for key in rem_card_cost:
+        if sel_card_dict[key] - player.card_power[key] > 0:
+            rem_card_cost[key] = sel_card_dict[key] - player.card_power[key]
+        elif sel_card_dict[key] - player.card_power[key] <= 0:
+            rem_card_cost[key] = 0
+
+        player.tokens[key] -= rem_card_cost[key]
+        board_tokens[key] += rem_card_cost[key]
+
+    print("The development card has been successfully purchased.")
+
+    # Adding the card to the player's list
+    selected_card = deck.pop(card_num - 1 - offset)
+    player.card_list.append(selected_card)
+
