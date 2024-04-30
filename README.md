@@ -1,69 +1,52 @@
-Hello, here is my recreation of the board game Splendor.
+# Splendor Recreation
 
-This is a chance to demonstrate my python skills, practice making games, and potentially add some analysis of the game and computer players.
+Welcome to my recreation of the board game Splendor in Python!
 
-This project now works with the exception of being able to buy with jokers and a few things might break if you tried really hard to, but as a whole you can get from the start of the game to the end as intended.
+## Overview
 
-You can even save your game state to a JSON file at the end of each round if you need to leave part way during the game. The next time you can load the save state from a JSON file and continue from there.
+This is a chance to demonstrate my python skills, practice making games, and potentially add some analysis of the game and computer players at a later date.
 
-The game is currently text based, which isn't as easy to play, but it was fun to see how to make the best of that.
+The project is fully functional, allowing players to progress from the start of the game to the end as intended with the exception of a few edge cases such as the inability to buy using jokers.
 
-Below are some of my development notes for future development and past lessons learned.
+Players can save their game state to a JSON file at the end of each round and resume from where they left off in the next session.
 
-Future Development
+While the game is currently text-based, future enhancements could include a rules explanation at the start of the game, colored fonts for improved readability, and visual enhancements for noble cards.
 
-    Could add a rules explanation at the start of the game.
+## Development Notes
 
-    Additional minor error proofing throughout.
-    
-    Colored fonts to make it easier to read.
+### Future Development Ideas:
 
-    Could display the total number of remaining cards in a level deck
+- Incorporate a rules explanation at the start of the game.
+- Implement additional error-proofing measures.
+- Improve readability with colored fonts.
+- Display the total number of remaining cards in each level deck.
+- Enable the use of Jokers for purchases.
+- Implement stricter token handling.
+- Enhance code compliance with PEP8 standards.
+- Improve the visual appeal of noble cards.
+- Reduce code redundancy.
+- Develop a bot capable of playing the game based on different strategies
 
-    Can't use Jokers to buy yet.
+### Lessons Learned:
 
-    Can take tokens even if it goes negative.
+- How to save and loading data from a JSON file.
+- Managing multiple modules while maintaining data access.
+- Working with standard Python data types and common loops.
+- Practicing version control with Git and GitHub.
+- Handling user interface and input.
+- Adhering to PEP8 coding conventions.
+- Implementing error handling for incorrect user input.
+- Effective use of dictionaries.
+- Leveraging ChatGPT for code development assistance.
+- Understanding the importance of iterative development and code refactoring.
+- Utilizing existing Python modules such as os, copy, random, and json effectively.
+- Overcoming challenges, such as dealing with cls errors and multiline quotes within lists.
+- Exploring creative solutions for text-based game mechanics and interface limitations.
+- Learning to prioritize between immediate fixes and future enhancements.
+- Embracing the need to refactor or remove code when necessary for better solutions.
 
-    Further compliance with PEP8
+## References
 
-    Could make the noble cards more visually appealing
-
-    Reduce code redudnancy
-
-    Could try to "solve" the game based on which cards held could lead to free purchase of other cards and how that stacks and then rank which to pick first because they lead to so many others. Could make a bot that does this. Each card is essentially scored based on this to determine which to pick next.
-
-
-What I'm learning / Lessons Learned
-
-    Saving and loading data from a JSON file.
-
-    Managing many modules while maintaining the necessary access to data
-
-    Standard Pythton data types and common loops
-
-    Practice with Git and Github
-
-    Some user interface and input
-
-    Practice aligning with PEP8
-
-    Make it less easy to break. Responds to incorrect user entry
-
-    Using dictionaries
-
-    Using Chat GPT to assist in some code development. Simulates working with another team member to develop code. Only about 5% of this code is copied from.
-
-    The way you implement a solution can and does matter, but sometimes its best to just get started and change it from there. Hard to solve it all in your head.
-
-    I used several existing modules such as os, copy, random, and json.
-
-    cls has an error and won't delete the scrollback buffer so had to make a workaround for that.
-
-    Don't use multiple line quotes (triple quotes) within a list. This will cause an issue...
-
-    Making this game text based in not the ideal way to play this game, but it was fun to try to see how to make the best of that situation and see what creative fixes could be applied there. (Added line breaks, cleared the terminal, moved outputs from multiple lines into a single line.)
-
-    Sometimes writing the comment of things to add in the future takes more time than to just fix it now.
-
-    Sometimes you have to delete code you worked hard on if its no longer the best solution.
-
+- Here are some links to the game
+- [Splendor_Wikipedia](https://en.wikipedia.org/wiki/Splendor_(game))
+- [Splendor_Amazon](https://www.amazon.com/Asmodee-SPL01-Splendor/dp/B00IZEUFIA?ref_=ast_sto_dp&th=1&psc=1)
