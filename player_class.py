@@ -1,5 +1,4 @@
-#import color_align as CA
-#from token_manager import TokenManager 
+# Existing Modules
 import json
 
 class Player:
@@ -11,7 +10,8 @@ class Player:
         #self.card_power = {'green': 4, 'white': 4, 'blue': 4, 'black': 4, 'red': 4, 'gold': 0}
         self.card_list = []
         self.card_hold = []
-        self.noble_count = 0
+        self.noble_count = 0 
+        self.is_cpu = False
 
         # All coins including jokers
         self.coinsList = [0 for _ in range(6)]
@@ -238,8 +238,9 @@ class Player:
         #return json.dumps(self,default=lambda o: o.__dict__,sort_keys=True, indent=4)
         return json.dumps(self,default=lambda o: o.__dict__, indent=4)
 
-#Testing
-"""       
-P1 = Player("Josh")
-P1.display_status()
-"""
+
+if __name__ == "__main__":
+    # Player example       
+    P1 = Player("Josh")
+    P1.display_status()
+    

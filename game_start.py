@@ -71,7 +71,7 @@ def introText():
 
     # The end of the game setup
     print("This ends the setup phase. Time to start the game.")
-    filler = input("Press enter to start the game.")
+    input("Press enter to start the game.")
     os.system('cls' if os.name == 'nt' else 'clear')
 
     return player_list, board_tokens, noble_cards, dclo, dclt, dclr

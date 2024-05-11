@@ -16,6 +16,7 @@ While the game is currently text-based, future enhancements could include a rule
 
 ### Future Development Ideas:
 
+- Add code testing
 - Incorporate a rules explanation at the start of the game.
 - Implement additional error-proofing measures.
 - Improve readability with colored fonts.
