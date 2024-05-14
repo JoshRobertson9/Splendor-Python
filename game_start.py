@@ -16,40 +16,24 @@ def introText():
         print("Invalid input for the number of players. Number of players is now set to 2.\n")
         num_players = 2
 
-
-    P1 = PC.Player(input("What is the name of player 1? "))    
-    # print(P1.name)
-
-    P2 = PC.Player(input("What is the name of player 2? "))    
-    # print(P2.name)
+    if num_players < 2:
+        print("The number of players it too low. It has been rounded up to the minimum required amount of 2.")
+        num_players = 2
+    
+    if num_players > 4:
+        print("Sorry, only 4 people at most can play at a time. Take turns and let them play next time!")
+        num_players = 4
 
     player_list = []
 
-    player_list.append(P1)
-    player_list.append(P2)
-    #print(player_list)
-    #player_list[1].display_status()
+    for i in range(1,num_players+1):
+        player_list.append(PC.Player(input(f"What is the name of player {i}? ")))
 
-    if num_players > 2:
-        P3 = PC.Player(input("What is the name of player 3? "))    
-        #print(P3.name)
-        player_list.append(P3)
-
-    if num_players > 3:
-        P4 = PC.Player(input("What is the name of player 4? "))    
-        #print(P4.name)
-        player_list.append(P4)
-
-        if num_players > 4:
-            print("Sorry, only 4 people at most can play at a time. Take turns and let them play next time!")
-
-    print("\nThe player list has been randomly shuffled.")
+    # Shuffling the player order
     random.shuffle(player_list)
+    print("\nThe player order has been randomly shuffled.")
 
-    # Board Token Initialization
-    board_tokens = {'green': 4, 'white': 4, 'blue': 4, 'black': 4, 'red': 4, 'gold': 5}
-
-    # Prep Tokens
+    # Board Token initialization
     match len(player_list):
         case 2:
             board_tokens = {'green': 4, 'white': 4, 'blue': 4, 'black': 4, 'red': 4, 'gold': 5}
@@ -58,16 +42,14 @@ def introText():
         case 4:
             board_tokens = {'green': 7, 'white': 7, 'blue': 7, 'black': 7, 'red': 7, 'gold': 5}
         case _ :
+            # This shouldn't happen because it should be constrained to 2, 3, or 4 from earlier, but kept just in case
             print("Error: Invalid Number of players listed.")
-
 
     # Preparing Noble Cards
     noble_cards = NC.prep_nobles(len(player_list))
 
-
     # Preparing the Development Cards
     dclo, dclt, dclr = DC.create_card_decks()
-
 
     # The end of the game setup
     print("This ends the setup phase. Time to start the game.")
@@ -75,3 +57,7 @@ def introText():
     os.system('cls' if os.name == 'nt' else 'clear')
 
     return player_list, board_tokens, noble_cards, dclo, dclt, dclr
+
+if __name__ == "__main__":
+    player_list, board_tokens, noble_cards, dclo, dclt, dclr = introText()
+    

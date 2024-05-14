@@ -17,7 +17,7 @@ def theLoop(player_list,board_tokens,noble_cards, dclo, dclt, dclr):
 
     while GameState == True:
 
-        # All players will take a turn. 
+        # All players will take a turn 
         for player in player_list:
 
             # Display the board
@@ -198,26 +198,30 @@ def player_action(player, board_tokens, player_list, dclo, dclt, dclr):
                 player_action(player, board_tokens, player_list, dclo, dclt, dclr)
 
             else:
-                # Assumes people put in a correct number.    
-                card_num = int(input("Please provide the number of the card that you would like (1-12). "))
-                # Doesn't error handle for a number outside of that range
+                try:
+                    card_num = int(input("Please provide the number of the card that you would like (1-12). "))
+                except ValueError:
+                    card_num = 0
 
                 match card_num:
                     case 1 | 2 | 3 | 4 :
                         selected_card = dclo.pop(card_num-1)
-                        player.card_hold.append(selected_card)
 
                     case 5 | 6 | 7 | 8 :
                         selected_card = dclt.pop(card_num-1-4)
-                        player.card_hold.append(selected_card)
 
                     case 9 | 10 | 11 | 12 :
                         selected_card = dclr.pop(card_num-1-8)
-                        player.card_hold.append(selected_card)
 
-                board_tokens['gold'] -= 1
-                player.tokens['gold'] += 1
-                print("The Card has been reserved.")
+                if card_num >= 1 and card_num <= 12:
+                    player.card_hold.append(selected_card)
+                    board_tokens['gold'] -= 1
+                    player.tokens['gold'] += 1
+                    print("The card has been reserved.")
+
+                else:
+                    print("Incorrect input, please try again.")
+                    player_action(player, board_tokens, player_list, dclo, dclt, dclr)
 
         # Buying a Dev Card
         case 4:
