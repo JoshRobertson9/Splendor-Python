@@ -135,7 +135,8 @@ def display_top_four(card_list):
     
     lvl_len = len(card_list)
 
-    if lvl_len >=4:
+    # Printing when there's more than 4 cards
+    if lvl_len >= 4:
         for n in range(4):
             #print("Number:",n+1)
             PrintCard(card_list, n)
@@ -148,11 +149,10 @@ def display_top_four(card_list):
             print()
 
     elif lvl_len == 0:
-        print("This deck is empty.")
-        print()
+        print("This deck is empty.\n")
 
     else:
-        print("Something is wrong with the card deck.")
+        print("Something is wrong with the card deck.\n")
 
 
 # Display the three levels
@@ -177,28 +177,20 @@ def removecard(card_list, index):
     card = card_list.pop(index)
     return card
 
+if __name__ == "__main__":
+    deck1, deck2, deck3 = create_card_decks()
+    print("The first card of deck 1")
+    PrintCard(deck1,1)
 
-# Test Case
-"""
-PrintCard(dev_cards_lvl_one,1)
+    print("The second card of deck 1")
+    PrintCard(deck1,2)
 
-PrintCard(dev_cards_lvl_one,2)
+    print("The first 4 cards of deck 1")
+    for num in range(0,4):
+        PrintCard(deck1,num)
 
-for num in range(0,4):
-    PrintCard(dev_cards_lvl_one,num)
-"""
 
-# PrintCard(dev_cards_lvl_three_copy,0)
-
-# three_levels_display()
-# Removing Card from list and returning it
-# The player will be able to add to their deck or reserve pile
-
-# Example:
-# display_top_four(dev_cards_lvl_three_copy)
-
-# removecard(dev_cards_lvl_three_copy,0)
-# three_levels_display()
+# Testing with json
 """
 import json
 file_path = "game_save.json"
@@ -212,3 +204,15 @@ with open(file_path,"w") as j_file:
     #json.dump([dev_cards_lvl_two,dev_cards_lvl_three],j_file, indent=4)
     #json.dump(dev_cards_lvl_one_copy,j_file, indent=4)
 """
+
+# PrintCard(dev_cards_lvl_three_copy,0)
+
+# three_levels_display()
+# Removing Card from list and returning it
+# The player will be able to add to their deck or reserve pile
+
+# Example:
+# display_top_four(dev_cards_lvl_three_copy)
+
+# removecard(dev_cards_lvl_three_copy,0)
+# three_levels_display()
