@@ -36,5 +36,4 @@ def load_save(file_name):
     input("Press enter to start the game.")
     os.system('cls' if os.name == 'nt' else 'clear')
 
-
     return player_list, board_tokens, noble_cards, dclo, dclt, dclr

@@ -40,22 +40,19 @@ class Player:
         # Resets to 0 and then recounts it all from there.
         self.card_power = {'green': 0, 'white': 0, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0}
 
-        #print(self.card_list)
-
         for card in self.card_list:
             key = card[0]
             self.card_power[key] += 1
 
-
     def points_update(self):
-
+        # Resets to 0 and then recounts it all from there.
         card_points = 0
 
         for card in self.card_list:
             card_points += card[1]
 
         # Each noble is worth 3 points, so you just need to retain the count of them you have.
-        self.points = card_points + (self.noble_count)*3
+        self.points = card_points + (self.noble_count) * 3
 
     def check_nobles(self, noble_deck):
         # Just picks one for now if they qualify for two and later update to let the player decide
@@ -108,7 +105,6 @@ class Player:
         power_list.append(self.card_power['black'])
         power_list.append(self.card_power['red'])
         power_list.append(self.card_power['gold'])
-        #print("This is my power list for the player ",power_list)
         return power_list        
 
 
@@ -118,12 +114,7 @@ class Player:
     def pick_up_tokens(self, board_tokens):
         # This method should have all of the error handling etc
         print("\nNow pick 2 of the same token or 3 different tokens.")
-        #print("\nNow pick 2 of the same token, 3 different tokens, or the Gold Joker and a card.")
         print("Provide the amount you would like for each color")
-        #print("Select the tokens that you would like in the following format.")
-        #print("  [Green, White, Blue, Black, Red, Gold (Joker)]")
-        #print("Ex. 1,      1,    0,     1,    0,   0 but with no spaces for 1 Green, 1 White, and 1 Black")
-        # Could make this a lot more user friendly. Could just ask each color at a time.
         
         choice_list_int = []
 
@@ -134,11 +125,6 @@ class Player:
         choice_list_int.append(int(input("How many Black?: ")))
         choice_list_int.append(int(input("How many Red?: ")))
         choice_list_int.append(0)
-
-        #Turning the input into a list
-        #choice_list = choice.split(",")
-        #choice_list_int = [int(x) for x in choice_list]
-        #print(choice_list_int)
 
         #Turn choices into a dictionary
         choice_dict = {'green': 0, 'white': 0, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0}

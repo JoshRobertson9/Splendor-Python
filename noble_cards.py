@@ -22,8 +22,8 @@ def prep_nobles(num_players):
     # Remove all but the needed cards (n players + 1)
     del noble_card_deck[-(10-num_players-1):]    
     return noble_card_deck
-"""
-print(noble_card_deck)
-prep_nobles(4)
-print(noble_card_deck)
-"""
+
+if __name__ == "__main__":
+    print(noble_card_deck)
+    prep_nobles(4)
+    print(noble_card_deck)

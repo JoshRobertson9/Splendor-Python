@@ -38,6 +38,5 @@ def play_splendor():
     # Game Wrap Up
     GE.end_text()
 
-
 if __name__ == "__main__":
     play_splendor()

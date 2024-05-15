@@ -35,45 +35,34 @@ def theLoop(player_list,board_tokens,noble_cards, dclo, dclt, dclr):
                 GameState = False
 
             # End of Player turn text
-            filler = input("Your turn has ended. Press enter to move to the next player.")
+            input("Your turn has ended. Press enter to move to the next player.")
 
             # "Clears" the terminal after each peron's turn
             print("\n" * 50)
 
         # Option to save the Game
-        #save_q = input(f"That ends round {round_num}. Would you like to save the game? (yes) ")
         save_q = input(f"The current round has now ended. Would you like to save the game? If so, type 'yes'. ")
         #round_num += 1
-        #save_q = "yes"
 
         if save_q == "yes":
 
             # Display other user's scores
-            #print("Right now this just saves the player data.")
-            #player.display_status()
-            #players_json_string = json.dumps(player,indent=4)
-            #players_json_string = player.toJSON()
 
             file_path = "game_save.json"
-
 
             with open(file_path,"w") as j_file:
                 j_file.write("[\n")
                 
                 # Writing the board tokens to the JSON
-                #j_file.write("\n")
                 json.dump(board_tokens,j_file, indent=4)
                 j_file.write(",\n")
 
 
                 # Writing the noble card deck to the JSON
-                #j_file.write("\n")
                 json.dump(noble_cards,j_file, indent=4)
                 j_file.write(",\n")
 
                 # Writing the Development card decks to the JSON
-                #json.dump(dev_cards_lvl_one_copy,j_file, indent=4)
-                #j_file.write(",\n")
                 dev_card_decks_dict = {"Deck1": dclo,"Deck2": dclt, "Deck3" : dclr}
                 json.dump(dev_card_decks_dict,j_file, indent=4)
                 j_file.write(",\n")
@@ -91,7 +80,7 @@ def theLoop(player_list,board_tokens,noble_cards, dclo, dclt, dclr):
                 j_file.write("\n]")
 
             print("The player data has been saved!")
-            lll = input("Press enter to continue the game and your turn.")
+            input("Press enter to continue the game and your turn.")
         
         print("\n" * 50)
 
@@ -280,7 +269,7 @@ def player_action(player, board_tokens, player_list, dclo, dclt, dclr):
         case 5:
             # Display other user's scores
             print("\nHere are the details of all the players")
-            for index, player in enumerate(player_list):
+            for player in player_list:
                 player.display_status()
                 print()
             print("____________________________\n")
@@ -329,4 +318,3 @@ def buy_card(player, deck, sel_card_dict, board_tokens, card_num, offset):
     # Adding the card to the player's list
     selected_card = deck.pop(card_num - 1 - offset)
     player.card_list.append(selected_card)
-
