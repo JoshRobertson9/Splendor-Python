@@ -112,12 +112,12 @@ def player_action(player, board_tokens, player_list, dclo, dclt, dclr):
     print("Option 3 - Select Development Card & Joker to Reserve")
     print("Option 4 - Purchase a held Development Card")
     print("Option 5 - Display all user's details")
-    #print("Option 6 - Save the game and exit")
+    #print("Option 6 - Display the game rules")
     #print("Player Name:", player.return_name())
 
     # Need to add error handling for non-int's
     try:
-        choice = int(input("What will it be?: "))
+        choice = int(input(f"What will it be {player.name}?: "))
     except ValueError:
         choice = 0
 
@@ -132,6 +132,7 @@ def player_action(player, board_tokens, player_list, dclo, dclt, dclr):
             try:
                 card_num = int(input("Please provide the number of the card that you would like. "))
             except ValueError:
+                # Throws it to the _ case later
                 card_num = 0
 
             match card_num:
@@ -219,7 +220,8 @@ def player_action(player, board_tokens, player_list, dclo, dclt, dclr):
                 print("Please make a different selection")
                 player_action(player, board_tokens, player_list, dclo, dclt, dclr)
 
-            else :
+            # You have a non-empty card held list
+            else:
                 print("Here are the cards you can choose from")
                 for card in player.card_hold:
                     print("Color | Point Value | Cost: ", card[0] , "|", str(card[1]), "|", card[2])
@@ -227,43 +229,49 @@ def player_action(player, board_tokens, player_list, dclo, dclt, dclr):
                 try:
                     selection = int(input("Type the number of the card you want to buy: ")) - 1
                 except ValueError:
+                    # Setting it up to exit on the next if statement check
                     selection = -1
 
+                # Checking for a valid card selection
                 if selection < 0 | selection > len(player.card_hold):
                     print("You have selected an invalid option. Please try again.")
                     player_action(player, board_tokens, player_list, dclo, dclt, dclr)
 
                 # We now know the list is not empty and the user has selected a real option
-
-                selected_card = player.card_hold[selection]
-                sel_card_dict = selected_card[2]
-
-                # The following code is coped from case two with only slight modifications.
-                # Would be nice to clean this up and create re-usable functions for this at some point.
-                if all(value <= (player.tokens[key] + player.card_power.get(key,0))  for key, value in sel_card_dict.items()):
-                    #print("You can afford this card!")
-
-                    # Remove tokens and put back into the pile
-                    rem_card_cost = {'green': 0, 'white': 0, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0}
-
-                    for key in rem_card_cost:
-                        if sel_card_dict[key] - player.card_power[key] > 0:
-                            rem_card_cost[key] = sel_card_dict[key] - player.card_power[key]
-                        elif sel_card_dict[key] - player.card_power[key] <= 0:
-                            rem_card_cost[key] = 0
-
-                        player.tokens[key] -= rem_card_cost[key]
-                        board_tokens[key] += rem_card_cost[key]
-
-                    print("The development card has been successfully purchased.")
-
-                    # Adding the card to the player's list
-                    selected_card = player.card_hold.pop(selection)
-                    player.card_list.append(selected_card)
-
                 else:
-                    print("Sorry, but you cannot afford this one. Try again.")
-                    player_action(player, board_tokens, player_list, dclo, dclt, dclr)
+
+                    selected_card = player.card_hold[selection]
+                    sel_card_dict = selected_card[2]
+
+                    # Now checking if the card can be afforded
+                        # The following code is coped from case two with only slight modifications.
+                        # The below essential says if the value of the card
+                        # is less than the sum of the tokens and card power
+                        # for each jewel type, then you can afford the card.
+                    if all(value <= (player.tokens[key] + player.card_power.get(key,0))  for key, value in sel_card_dict.items()):
+
+                        rem_card_cost = {'green': 0, 'white': 0, 'blue': 0, 'black': 0, 'red': 0, 'gold': 0}
+
+                        # Calculating how many tokens will have to be paid for the card
+                        for key in rem_card_cost:
+                            if sel_card_dict[key] - player.card_power[key] > 0:
+                                rem_card_cost[key] = sel_card_dict[key] - player.card_power[key]
+                            elif sel_card_dict[key] - player.card_power[key] <= 0:
+                                rem_card_cost[key] = 0
+
+                            # Remove tokens from the player and put back into the pile
+                            player.tokens[key] -= rem_card_cost[key]
+                            board_tokens[key] += rem_card_cost[key]
+
+                        print("The development card has been successfully purchased.")
+
+                        # Adding the card to the player's list
+                        selected_card = player.card_hold.pop(selection)
+                        player.card_list.append(selected_card)
+
+                    else:
+                        print("Sorry, but you cannot afford this one. Try again.")
+                        player_action(player, board_tokens, player_list, dclo, dclt, dclr)
 
         # Display All Player's Scores
         case 5:
@@ -274,6 +282,11 @@ def player_action(player, board_tokens, player_list, dclo, dclt, dclr):
                 print()
             print("____________________________\n")
             player_action(player, board_tokens, player_list, dclo, dclt, dclr)
+
+        # Display the game rules
+        case 6:
+            # still creating this
+            print("Here are the game rules...")
 
         # Save (and Exit) Game
         case 11:
