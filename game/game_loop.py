@@ -48,7 +48,7 @@ def theLoop(player_list,board_tokens,noble_cards, dclo, dclt, dclr):
 
             # Display other user's scores
 
-            file_path = "game_save.json"
+            file_path = "saves/game_save.json"
 
             with open(file_path,"w") as j_file:
                 j_file.write("[\n")

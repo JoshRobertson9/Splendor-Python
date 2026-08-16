@@ -6,7 +6,7 @@ def end_text():
 
     if playagain == "yes":
         # Delete the old save file. It'll be written over anyways, but wanted to give it a fresh start
-        with open("game_save.json","w") as j_file:
+        with open("saves/game_save.json","w") as j_file:
             j_file.write("")
     
         # Restarts the game

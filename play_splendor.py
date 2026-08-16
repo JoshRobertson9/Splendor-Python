@@ -18,7 +18,7 @@ def play_splendor():
     if load_save_ans == "yes" or load_save_ans == "y":
 
         # Loading the Save data
-        player_list, board_tokens, noble_cards, dclo, dclt, dclr = load_save("game_save.json")
+        player_list, board_tokens, noble_cards, dclo, dclt, dclr = load_save("saves/game_save.json")
 
     else:
         #Game Start and Player Setup
