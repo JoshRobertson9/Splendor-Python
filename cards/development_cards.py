@@ -188,31 +188,3 @@ if __name__ == "__main__":
     print("The first 4 cards of deck 1")
     for num in range(0,4):
         PrintCard(deck1,num)
-
-
-# Testing with json
-"""
-import json
-file_path = "game_save.json"
-
-dev_card_decks_dict = {"Deck1": dev_cards_lvl_one_copy,"Deck2": dev_cards_lvl_two_copy, "Deck3" : dev_cards_lvl_three_copy}
-
-with open(file_path,"w") as j_file:
-    #json.dump([dev_cards_lvl_one_copy,dev_cards_lvl_two_copy,dev_cards_lvl_three_copy],j_file, indent=4)
-    json.dump(dev_card_decks_dict,j_file, indent=4)
-
-    #json.dump([dev_cards_lvl_two,dev_cards_lvl_three],j_file, indent=4)
-    #json.dump(dev_cards_lvl_one_copy,j_file, indent=4)
-"""
-
-# PrintCard(dev_cards_lvl_three_copy,0)
-
-# three_levels_display()
-# Removing Card from list and returning it
-# The player will be able to add to their deck or reserve pile
-
-# Example:
-# display_top_four(dev_cards_lvl_three_copy)
-
-# removecard(dev_cards_lvl_three_copy,0)
-# three_levels_display()
