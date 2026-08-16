@@ -3,7 +3,7 @@ import os
 import random
 
 # My Modules
-import player_class as PC
+import game.player_class as PC
 import cards.noble_cards as NC
 import cards.development_cards as DC
 

@@ -1,5 +1,5 @@
 # My Modules
-from load_save import load_save
+from game.load_save import load_save
 import game.game_start as GS
 import game.game_loop as GL
 import game.winner_calc as WC

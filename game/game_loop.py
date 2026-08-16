@@ -5,7 +5,7 @@ import json
 
 # My Modules
 import cards.development_cards as DC
-import player_class as PC
+import game.player_class as PC
 #import noble_cards as NC
 
 def theLoop(player_list,board_tokens,noble_cards, dclo, dclt, dclr):
