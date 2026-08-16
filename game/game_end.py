@@ -1,5 +1,3 @@
-import json
-
 def end_text():
     
     playagain = str(input("Would you like to play again? Type 'yes' or else the game will end. "))
@@ -11,6 +9,7 @@ def end_text():
     
         # Restarts the game
         import play_splendor as PS
+        PS.play_splendor()
 
     else:
         print("Thanks for playing, the game will now end!")
