@@ -25,10 +25,10 @@ def play_splendor():
 
     else:
         #Game Start and Player Setup
-        player_list, board_tokens, noble_cards, dclo, dclt, dclr = GS.introText()
+        player_list, board_tokens, noble_cards, dclo, dclt, dclr = GS.intro_text()
 
     # Playing the Game Loop
-    GL.theLoop(player_list, board_tokens, noble_cards, dclo, dclt, dclr)
+    GL.the_loop(player_list, board_tokens, noble_cards, dclo, dclt, dclr)
 
     # Winner Announcement
     WC.winner_calc(player_list)

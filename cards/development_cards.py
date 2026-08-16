@@ -124,7 +124,7 @@ def create_card_decks():
 
 
 # Inputs are list of cards and which index of that list to show.
-def PrintCard(card_list, index):
+def print_card(card_list, index):
 
     # Color and Point Value
     print("Color | Point Value | Cost: ", card_list[index][0] , "|", str(card_list[index][1]), "|", card_list[index][2])
@@ -139,13 +139,13 @@ def display_top_four(card_list):
     if lvl_len >= 4:
         for n in range(4):
             #print("Number:",n+1)
-            PrintCard(card_list, n)
+            print_card(card_list, n)
             print()
 
     elif lvl_len >= 1:
         for n in range(lvl_len):
             #print("Number:",n+1)
-            PrintCard(card_list, n)
+            print_card(card_list, n)
             print()
 
     elif lvl_len == 0:
@@ -180,11 +180,11 @@ def removecard(card_list, index):
 if __name__ == "__main__":
     deck1, deck2, deck3 = create_card_decks()
     print("The first card of deck 1")
-    PrintCard(deck1,1)
+    print_card(deck1,1)
 
     print("The second card of deck 1")
-    PrintCard(deck1,2)
+    print_card(deck1,2)
 
     print("The first 4 cards of deck 1")
     for num in range(0,4):
-        PrintCard(deck1,num)
+        print_card(deck1,num)
