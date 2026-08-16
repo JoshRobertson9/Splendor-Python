@@ -1,9 +1,9 @@
 # My Modules
 from load_save import load_save
-import game_start as GS
-import game_loop as GL
-import winner_calc as WC
-import game_end as GE
+import game.game_start as GS
+import game.game_loop as GL
+import game.winner_calc as WC
+import game.game_end as GE
 
 def play_splendor():
 
