@@ -1,3 +1,6 @@
+#Existing Modules
+import os
+
 # My Modules
 from game.load_save import load_save
 import game.game_start as GS
@@ -15,7 +18,7 @@ def play_splendor():
     load_save_ans = input('Type "yes" if you wanted to load the save, otherwise a new game will start.\n')
 
     # Load Save Decision
-    if load_save_ans == "yes" or load_save_ans == "y":
+    if (load_save_ans == "yes" or load_save_ans == "y") and os.path.exists("saves/game_save.json"):
 
         # Loading the Save data
         player_list, board_tokens, noble_cards, dclo, dclt, dclr = load_save("saves/game_save.json")
