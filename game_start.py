@@ -4,8 +4,8 @@ import random
 
 # My Modules
 import player_class as PC
-import noble_cards as NC
-import development_cards as DC
+import cards.noble_cards as NC
+import cards.development_cards as DC
 
 def introText():
 
