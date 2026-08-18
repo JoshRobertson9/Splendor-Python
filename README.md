@@ -2,9 +2,17 @@
 
 Welcome to my recreation of the board game Splendor in Python!
 
+## How to Play
+- Download the repo onto your local computer.
+- Python 3.10 or later is needed to run the repo, so download if you don't have it.
+- in the repo's root directory start the game with "python3 play_splendor.py"
+- The game will start with it's interactive GUI and guide you through playing the game
+- At the end of each round you will have the opportunity to save the game for a later time.
+- Enjoy!
+
 ## Overview
 
-This is a chance to demonstrate my python skills, practice making games, and potentially add some analysis of the game and computer players at a later date.
+This project is a chance to demonstrate my python skills, practice making games, and potentially add some analysis of the game and computer players at a later date.
 
 The project is fully functional, allowing players to progress from the start of the game to the end as intended with the exception of a few edge cases such as the inability to buy using jokers.
 

@@ -4,11 +4,11 @@ import random
 import json
 
 # My Modules
-import development_cards as DC
-import player_class as PC
+import cards.development_cards as DC
+import game.player_class as PC
 #import noble_cards as NC
 
-def theLoop(player_list,board_tokens,noble_cards, dclo, dclt, dclr):
+def the_loop(player_list,board_tokens,noble_cards, dclo, dclt, dclr):
 
     #round_num = 1
 
@@ -48,7 +48,7 @@ def theLoop(player_list,board_tokens,noble_cards, dclo, dclt, dclr):
 
             # Display other user's scores
 
-            file_path = "game_save.json"
+            file_path = "saves/game_save.json"
 
             with open(file_path,"w") as j_file:
                 j_file.write("[\n")

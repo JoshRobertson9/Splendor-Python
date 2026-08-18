@@ -3,7 +3,7 @@ import json
 import os
 
 # My Modules
-import player_class as PC
+import game.player_class as PC
 
 # Function to load the save data from the json save file.
 def load_save(file_name):

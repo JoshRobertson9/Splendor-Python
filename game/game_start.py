@@ -3,11 +3,11 @@ import os
 import random
 
 # My Modules
-import player_class as PC
-import noble_cards as NC
-import development_cards as DC
+import game.player_class as PC
+import cards.noble_cards as NC
+import cards.development_cards as DC
 
-def introText():
+def intro_text():
 
     # Player Initialization
     try:
@@ -59,5 +59,5 @@ def introText():
     return player_list, board_tokens, noble_cards, dclo, dclt, dclr
 
 if __name__ == "__main__":
-    player_list, board_tokens, noble_cards, dclo, dclt, dclr = introText()
+    player_list, board_tokens, noble_cards, dclo, dclt, dclr = intro_text()
     
